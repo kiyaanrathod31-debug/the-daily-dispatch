@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — The Daily Dispatch</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFFCF7; --white:#fff; --ink:#18181B; --ink-soft:#52525B; --ink-dim:#A1A1AA;
+    --border:#E4E4E7; --font:'Nunito',sans-serif; --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+
+  header{background:var(--white);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+  header::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#F97316,#EC4899,#7C3AED,#3B82F6,#16A34A);}
+  .header-inner{max-width:740px;margin:0 auto;padding:22px 20px 18px;}
+  .masthead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .logo-group{display:flex;align-items:center;gap:14px;}
+  .logo-mark{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#F97316,#DB2777,#7C3AED);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;box-shadow:0 4px 12px rgba(249,115,22,0.3);}
+  .logo-title{font-size:clamp(20px,5.5vw,30px);font-weight:900;line-height:1;letter-spacing:-0.5px;}
+  .logo-title .daily{color:#F97316;}
+  .logo-tagline{font-size:13px;font-weight:700;color:var(--ink-soft);margin-top:4px;}
+  .header-nav{display:flex;gap:6px;align-items:center;flex-shrink:0;padding-top:6px;}
+  .nav-link{font-size:13px;font-weight:800;color:var(--ink-soft);padding:7px 14px;border-radius:100px;border:2px solid transparent;transition:all 0.15s;}
+  .nav-link:hover{background:var(--cream);border-color:var(--border);}
+  .nav-link.active{color:#F97316;border-color:#FDBA74;background:#FFF7ED;}
+
+  .wrap{max-width:740px;margin:0 auto;padding:32px 20px 80px;}
+  h2{font-size:22px;font-weight:900;margin-bottom:12px;margin-top:36px;}
+  h2:first-of-type{margin-top:0;}
+  p{font-size:15px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;max-width:58ch;line-height:1.7;}
+  p strong{color:var(--ink);}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:20px 0;}
+  .cat-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:20px;transition:transform 0.15s,border-color 0.15s;}
+  .cat-card:hover{transform:translateY(-2px);}
+  .cat-card .icon{font-size:30px;margin-bottom:10px;}
+  .cat-card .name{font-size:16px;font-weight:900;margin-bottom:6px;}
+  .cat-card .desc{font-size:13px;font-weight:600;color:var(--ink-soft);line-height:1.5;}
+  .c-india:hover{border-color:#FDBA74;} .c-india .name{color:#EA580C;}
+  .c-world:hover{border-color:#93C5FD;} .c-world .name{color:#1D4ED8;}
+  .c-sports:hover{border-color:#86EFAC;} .c-sports .name{color:#15803D;}
+  .c-science:hover{border-color:#C4B5FD;} .c-science .name{color:#5B21B6;}
+  .c-nature:hover{border-color:#99F6E4;} .c-nature .name{color:#0F766E;}
+  .c-arts:hover{border-color:#F9A8D4;} .c-arts .name{color:#9D174D;}
+
+  .tips-box{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:22px;margin-top:12px;}
+  .tip{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;font-size:14px;font-weight:700;color:var(--ink);}
+  .tip:last-child{margin-bottom:0;}
+  .tip-icon{font-size:22px;flex-shrink:0;}
+  .tip-text{line-height:1.5;}
+
+  .dispatch-card{background:linear-gradient(135deg,#FFF7ED,#FDF2F8);border:2px solid #FDBA74;border-radius:var(--radius);padding:22px;margin-top:20px;display:flex;gap:16px;align-items:flex-start;}
+  .dispatch-icon{width:48px;height:48px;background:linear-gradient(135deg,#F97316,#7C3AED);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+  .dispatch-text .title{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:6px;}
+  .dispatch-text .body{font-size:14px;font-weight:600;color:var(--ink-soft);line-height:1.6;}
+
+  footer{background:var(--white);border-top:2px solid var(--border);padding:24px 20px 40px;}
+  .footer-inner{max-width:740px;margin:0 auto;font-size:13px;font-weight:700;color:var(--ink-soft);}
+  footer a{color:#F97316;}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="masthead">
+      <div class="logo-group">
+        <div class="logo-mark">📰</div>
+        <div>
+          <div class="logo-title">THE <span class="daily">DAILY</span> DISPATCH</div>
+          <div class="logo-tagline">News for curious minds ✨</div>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Feed</a>
+        <a href="about.html" class="nav-link active">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h2>What is The Daily Dispatch? 📰</h2>
+  <p>The Daily Dispatch is a news site for curious readers. Every story is chosen to help you understand what's happening in India and around the world — written in simple, clear language that anyone can follow.</p>
+  <p>Reading the news is one of the best habits you can build. It helps you understand people, places, science, sports, and why things happen the way they do. The Daily Dispatch makes it easy and interesting!</p>
+
+  <h2>What will I find here?</h2>
+  <div class="cat-grid">
+    <div class="cat-card c-india"><div class="icon">🇮🇳</div><div class="name">India</div><div class="desc">Big things happening in our country — achievements, events, and incredible Indian stories.</div></div>
+    <div class="cat-card c-world"><div class="icon">🌍</div><div class="name">World</div><div class="desc">Stories from other countries and how they connect to India and to all of us.</div></div>
+    <div class="cat-card c-sports"><div class="icon">🏆</div><div class="name">Sports</div><div class="desc">Cricket, badminton, athletics, football — Indian athletes making the country proud.</div></div>
+    <div class="cat-card c-science"><div class="icon">🔬</div><div class="name">Science</div><div class="desc">Space, technology, inventions and discoveries — amazing things humans are figuring out.</div></div>
+    <div class="cat-card c-nature"><div class="icon">🌿</div><div class="name">Nature</div><div class="desc">Animals, weather, the environment and the natural world we all share and depend on.</div></div>
+    <div class="cat-card c-arts"><div class="icon">🎨</div><div class="name">Arts</div><div class="desc">Music, books, films, culture and the creative people who make our world more interesting.</div></div>
+  </div>
+
+  <h2>What is Ask Dispatch?</h2>
+  <div class="dispatch-card">
+    <div class="dispatch-icon">📰</div>
+    <div class="dispatch-text">
+      <div class="title">Ask Dispatch — your AI news explainer</div>
+      <div class="body">Every story has an <strong>Ask Dispatch</strong> button. Click it and an AI will explain the story in simple language and answer your questions — "What is uranium?", "Where is New Zealand?", "Why does this matter?". Ask Dispatch explains things simply, but it's always good to ask your teacher too!</div>
+    </div>
+  </div>
+
+  <h2>How to get the most from the news</h2>
+  <div class="tips-box">
+    <div class="tip"><div class="tip-icon">👀</div><div class="tip-text">Read the headline first. Does it make you curious? Good — that's the whole point.</div></div>
+    <div class="tip"><div class="tip-icon">📖</div><div class="tip-text">Read the description below the headline — it gives you the main idea in a few sentences.</div></div>
+    <div class="tip"><div class="tip-icon">🔗</div><div class="tip-text">Click "Read full story" when you want to know everything about a topic.</div></div>
+    <div class="tip"><div class="tip-icon">📰</div><div class="tip-text">Use Ask Dispatch to explain anything confusing. You can ask it as many questions as you like.</div></div>
+    <div class="tip"><div class="tip-icon">🌟</div><div class="tip-text">The best readers always ask "Why?" — keep that habit going forever.</div></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p>Made for curious readers everywhere. Always keep reading, always keep asking questions. 📚 <a href="index.html">← Back to the feed</a></p>
+  </div>
+</footer>
+</body>
+</html>

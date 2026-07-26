@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Dispatch — News for Curious Minds</title>
+<meta name="description" content="Simple, fun news for curious readers — India, world, science, sports, nature and arts, explained simply.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #FFFCF7;
+    --white: #FFFFFF;
+    --ink: #18181B;
+    --ink-soft: #52525B;
+    --ink-dim: #A1A1AA;
+    --border: #E4E4E7;
+    --india:   #F97316; --india-bg: #FFF7ED; --india-dk: #9A3412;
+    --world:   #3B82F6; --world-bg: #EFF6FF; --world-dk: #1E3A8A;
+    --sports:  #16A34A; --sports-bg: #F0FDF4; --sports-dk: #14532D;
+    --science: #7C3AED; --science-bg: #F5F3FF; --science-dk: #3B0764;
+    --nature:  #0D9488; --nature-bg: #F0FDFA; --nature-dk: #134E4A;
+    --arts:    --arts-c: #DB2777; --arts-bg: #FDF2F8; --arts-dk: #831843;
+    --font-display: 'Nunito', sans-serif;
+    --font-body: 'Nunito Sans', sans-serif;
+    --radius-sm: 10px;
+    --radius: 18px;
+    --radius-lg: 24px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── HEADER ───────────────────────────────────────────── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    overflow: hidden;
+  }
+  header::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #F97316 0%, #EC4899 25%, #7C3AED 50%, #3B82F6 75%, #16A34A 100%);
+  }
+  .header-inner { max-width: 740px; margin: 0 auto; padding: 22px 20px 0; }
+
+  .masthead { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+
+  .logo-group { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: linear-gradient(135deg, #F97316 0%, #DB2777 50%, #7C3AED 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+  }
+  .logo-text { }
+  .logo-title {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 5.5vw, 30px);
+    font-weight: 900; line-height: 1; letter-spacing: -0.5px;
+  }
+  .logo-title .the { color: var(--ink); }
+  .logo-title .daily { color: #F97316; }
+  .logo-title .dispatch { color: var(--ink); }
+  .logo-tagline { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--ink-soft); margin-top: 4px; }
+
+  .header-nav { display: flex; gap: 6px; align-items: center; flex-shrink: 0; padding-top: 6px; }
+  .nav-link { font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--ink-soft); padding: 7px 14px; border-radius: 100px; border: 2px solid transparent; transition: all 0.15s; }
+  .nav-link:hover { background: var(--cream); border-color: var(--border); }
+  .nav-link.active { color: #F97316; border-color: #FDBA74; background: #FFF7ED; }
+
+  /* ── FILTER CHIPS ─────────────────────────────────────── */
+  .filter-bar { padding: 0 20px 16px; }
+  .filters { display: flex; gap: 8px; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+  .filters::-webkit-scrollbar { display: none; }
+
+  .chip {
+    flex: 0 0 auto; font-family: var(--font-display); font-size: 13px; font-weight: 800;
+    padding: 9px 18px; border-radius: 100px; border: 2.5px solid var(--border);
+    background: var(--white); color: var(--ink-soft); cursor: pointer;
+    transition: all 0.18s ease; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  }
+  .chip:hover { transform: translateY(-2px); border-color: var(--ink-dim); color: var(--ink); }
+  .chip.c-all     { background: var(--ink);     color: #fff; border-color: var(--ink); }
+  .chip.c-india   { background: #F97316; color: #fff; border-color: #F97316; }
+  .chip.c-world   { background: #3B82F6; color: #fff; border-color: #3B82F6; }
+  .chip.c-sports  { background: #16A34A; color: #fff; border-color: #16A34A; }
+  .chip.c-science { background: #7C3AED; color: #fff; border-color: #7C3AED; }
+  .chip.c-nature  { background: #0D9488; color: #fff; border-color: #0D9488; }
+  .chip.c-arts    { background: #DB2777; color: #fff; border-color: #DB2777; }
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  .wrap { max-width: 740px; margin: 0 auto; padding: 0 20px; }
+  .meta-bar { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 10px; }
+  .story-count { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+
+  .feed { display: flex; flex-direction: column; gap: 14px; padding-bottom: 80px; }
+
+  /* ── STORY CARD ───────────────────────────────────────── */
+  .card {
+    background: var(--white); border-radius: var(--radius);
+    border: 2px solid var(--border); overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .card.h-india:hover   { border-color: #FDBA74; }
+  .card.h-world:hover   { border-color: #93C5FD; }
+  .card.h-sports:hover  { border-color: #86EFAC; }
+  .card.h-science:hover { border-color: #C4B5FD; }
+  .card.h-nature:hover  { border-color: #99F6E4; }
+  .card.h-arts:hover    { border-color: #F9A8D4; }
+
+  /* coloured top stripe */
+  .card-stripe { height: 8px; }
+  .s-india   { background: linear-gradient(90deg, #F97316, #FB923C); }
+  .s-world   { background: linear-gradient(90deg, #3B82F6, #60A5FA); }
+  .s-sports  { background: linear-gradient(90deg, #16A34A, #22C55E); }
+  .s-science { background: linear-gradient(90deg, #7C3AED, #A78BFA); }
+  .s-nature  { background: linear-gradient(90deg, #0D9488, #2DD4BF); }
+  .s-arts    { background: linear-gradient(90deg, #DB2777, #F472B6); }
+
+  .card-inner { padding: 18px 20px 0; }
+
+  /* category pill */
+  .meta-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .cat-pill {
+    font-family: var(--font-display); font-size: 11px; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 5px 12px; border-radius: 100px;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .p-india   { background: var(--india-bg);   color: #C2410C; }
+  .p-world   { background: var(--world-bg);   color: #1D4ED8; }
+  .p-sports  { background: var(--sports-bg);  color: #15803D; }
+  .p-science { background: var(--science-bg); color: #5B21B6; }
+  .p-nature  { background: var(--nature-bg);  color: #0F766E; }
+  .p-arts    { background: #FDF2F8;            color: #9D174D; }
+
+  .source-tag { font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+  .date-tag   { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--ink-dim); margin-left: auto; }
+
+  .headline { font-family: var(--font-display); font-size: clamp(17px, 3.8vw, 21px); font-weight: 900; line-height: 1.3; margin-bottom: 9px; color: var(--ink); letter-spacing: -0.2px; }
+  .blurb { font-size: 14.5px; font-weight: 600; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; }
+
+  .card-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 20px 18px; }
+
+  .read-link { font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: color 0.15s; }
+  .read-link:hover { color: var(--ink); }
+
+  .ask-btn {
+    font-family: var(--font-display); font-size: 13px; font-weight: 800;
+    background: var(--cream); border: 2px solid var(--border); border-radius: 100px;
+    padding: 9px 20px; cursor: pointer; color: var(--ink-soft);
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: all 0.18s ease; white-space: nowrap;
+  }
+  .ask-btn:hover { background: #FFF7ED; border-color: #F97316; color: #C2410C; transform: scale(1.04); }
+  .ask-btn.open  { background: #F97316; border-color: #F97316; color: white; }
+  .ask-btn .ask-icon { font-size: 16px; transition: transform 0.2s; }
+  .ask-btn.open .ask-icon { transform: rotate(180deg); }
+
+  /* ── CHAT PANEL ───────────────────────────────────────── */
+  .chat-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; border-top: 2px solid var(--border); background: var(--cream); }
+  .chat-panel.open { max-height: 520px; }
+  .chat-inner { padding: 18px 20px 20px; }
+
+  .dispatch-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .dispatch-mark {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, #F97316, #7C3AED);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .dispatch-label { font-family: var(--font-display); font-size: 15px; font-weight: 900; color: var(--ink); }
+  .dispatch-sub   { font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--ink-soft); margin-top: 1px; }
+
+  .chat-messages { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; max-height: 230px; overflow-y: auto; }
+
+  .msg-ai { display: flex; gap: 9px; align-items: flex-start; }
+  .msg-ai-icon { width: 30px; height: 30px; border-radius: 10px; background: linear-gradient(135deg, #F97316, #7C3AED); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+  .msg-ai-text { background: var(--white); border: 2px solid var(--border); border-radius: 4px 16px 16px 16px; padding: 10px 14px; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.6; max-width: calc(100% - 42px); }
+
+  .msg-user { display: flex; justify-content: flex-end; }
+  .msg-user-text { background: #F97316; border-radius: 16px 4px 16px 16px; padding: 10px 14px; font-size: 14px; font-weight: 700; color: white; line-height: 1.6; max-width: 80%; }
+
+  .typing-anim { display: inline-flex; gap: 5px; align-items: center; padding: 4px 0; }
+  .typing-anim span { width: 7px; height: 7px; border-radius: 50%; background: #D4D4D8; animation: pulse 1.2s infinite; }
+  .typing-anim span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-anim span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse { 0%,80%,100% { transform: scale(0.7); opacity: 0.4; } 40% { transform: scale(1.1); opacity: 1; } }
+
+  .chat-row { display: flex; gap: 8px; }
+  .chat-input {
+    flex: 1; font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    color: var(--ink); background: var(--white); border: 2px solid var(--border);
+    border-radius: 100px; padding: 11px 18px; outline: none; transition: border-color 0.15s;
+  }
+  .chat-input:focus { border-color: #F97316; }
+  .chat-input::placeholder { color: var(--ink-dim); font-weight: 600; }
+  .chat-send {
+    font-family: var(--font-display); font-size: 13px; font-weight: 900;
+    background: #F97316; color: white; border: none; border-radius: 100px;
+    padding: 11px 22px; cursor: pointer; transition: all 0.15s; white-space: nowrap;
+  }
+  .chat-send:hover { background: #EA6C0A; transform: scale(1.03); }
+  .chat-send:disabled { background: #D4D4D8; cursor: not-allowed; transform: none; }
+  .chat-note { font-family: var(--font-display); font-size: 11px; font-weight: 700; color: var(--ink-dim); text-align: center; margin-top: 10px; }
+
+  .empty-state { text-align: center; padding: 60px 0; font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--ink-soft); }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  footer { background: var(--white); border-top: 2px solid var(--border); padding: 28px 20px 48px; margin-top: 8px; }
+  .footer-inner { max-width: 740px; margin: 0 auto; }
+  .footer-inner p { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--ink-soft); line-height: 1.7; }
+  .footer-inner a { color: #F97316; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="masthead">
+      <div class="logo-group">
+        <div class="logo-mark">📰</div>
+        <div class="logo-text">
+          <div class="logo-title">
+            <span class="the">THE </span><span class="daily">DAILY </span><span class="dispatch">DISPATCH</span>
+          </div>
+          <div class="logo-tagline">News for curious minds ✨</div>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link active">Feed</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <div class="filters" id="filters"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="meta-bar">
+    <div class="story-count" id="story-count"></div>
+  </div>
+  <main class="feed" id="feed"></main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p>Every story links to its original source. We pick stories to help you understand India and the world. 📚</p>
+    <p style="margin-top:6px;">Always read the full article. Ask your teacher if something is confusing. Staying curious is a superpower! ⭐ <a href="about.html">About this site →</a></p>
+  </div>
+</footer>
+
+<script src="stories.js"></script>
+<script>
+  const WORKER_URL = 'YOUR_CLOUDFLARE_WORKER_URL_HERE';
+
+  const CAT = {
+    all:     { label:'All Stories', emoji:'✨', chip:'c-all' },
+    india:   { label:'India',       emoji:'🇮🇳', chip:'c-india' },
+    world:   { label:'World',       emoji:'🌍', chip:'c-world' },
+    sports:  { label:'Sports',      emoji:'🏆', chip:'c-sports' },
+    science: { label:'Science',     emoji:'🔬', chip:'c-science' },
+    nature:  { label:'Nature',      emoji:'🌿', chip:'c-nature' },
+    arts:    { label:'Arts',        emoji:'🎨', chip:'c-arts' },
+  };
+  const CATEGORIES = ['all','india','world','sports','science','nature','arts'];
+
+  const feedEl = document.getElementById('feed');
+  const filtersEl = document.getElementById('filters');
+  const countEl = document.getElementById('story-count');
+  let activeCategory = 'all';
+  let currentFiltered = [];
+  const chats = {};
+
+  function fmtDate(d){ return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); }
+
+  function renderFilters(){
+    filtersEl.innerHTML = '';
+    CATEGORIES.forEach(cat => {
+      const info = CAT[cat];
+      const btn = document.createElement('button');
+      btn.className = 'chip' + (cat === activeCategory ? ' ' + info.chip : '');
+      btn.innerHTML = `<span>${info.emoji}</span> ${info.label}`;
+      btn.onclick = () => { activeCategory = cat; render(); };
+      filtersEl.appendChild(btn);
+    });
+  }
+
+  function render(){
+    renderFilters();
+    const sorted = [...STORIES].sort((a,b) => new Date(b.date)-new Date(a.date));
+    currentFiltered = activeCategory === 'all' ? sorted : sorted.filter(s => s.category === activeCategory);
+    const n = currentFiltered.length;
+    countEl.textContent = n + (n===1?' story':' stories');
+
+    if(!n){ feedEl.innerHTML = '<div class="empty-state">No stories here yet — check back soon! 🔍</div>'; return; }
+
+    feedEl.innerHTML = currentFiltered.map((s,i) => {
+      const info = CAT[s.category] || CAT.all;
+      return `
+      <div class="card h-${s.category}">
+        <div class="card-stripe s-${s.category}"></div>
+        <div class="card-inner">
+          <div class="meta-row">
+            <span class="cat-pill p-${s.category}">${info.emoji} ${info.label}</span>
+            <span class="source-tag">${s.source}</span>
+            <span class="date-tag">${fmtDate(s.date)}</span>
+          </div>
+          <div class="headline">${s.headline}</div>
+          <div class="blurb">${s.blurb}</div>
+        </div>
+        <div class="card-actions">
+          <span class="read-link" onclick="window.open('${s.url}','_blank')">Read full story →</span>
+          <button class="ask-btn" id="btn-${i}" onclick="toggleChat(${i})">
+            <span class="ask-icon">📰</span> Ask Dispatch
+          </button>
+        </div>
+        <div class="chat-panel" id="chat-${i}">
+          <div class="chat-inner">
+            <div class="dispatch-header">
+              <div class="dispatch-mark">📰</div>
+              <div>
+                <div class="dispatch-label">Ask Dispatch</div>
+                <div class="dispatch-sub">Ask me anything about this story</div>
+              </div>
+            </div>
+            <div class="chat-messages" id="msgs-${i}"></div>
+            <div class="chat-row">
+              <input class="chat-input" id="inp-${i}" type="text"
+                placeholder="Ask a question about this story..."
+                onkeydown="if(event.key==='Enter') send(${i})">
+              <button class="chat-send" id="snd-${i}" onclick="send(${i})">Send ✈️</button>
+            </div>
+            <div class="chat-note">Ask Dispatch explains news simply. Always check with your teacher too!</div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function toggleChat(i){
+    const panel = document.getElementById('chat-'+i);
+    const btn   = document.getElementById('btn-'+i);
+    const open  = panel.classList.contains('open');
+    document.querySelectorAll('.chat-panel').forEach(p=>p.classList.remove('open'));
+    document.querySelectorAll('.ask-btn').forEach(b=>b.classList.remove('open'));
+    if(!open){
+      panel.classList.add('open');
+      btn.classList.add('open');
+      if(!chats[i]){ chats[i]=[]; autoExplain(i); }
+    }
+  }
+
+  async function autoExplain(i){
+    const s = currentFiltered[i];
+    addTyping(i);
+    const system = `You are Ask Dispatch, a friendly news explainer for curious young readers.
+Explain news stories in clear, simple, engaging language. Use everyday words and relatable comparisons.
+No markdown — plain sentences only. Explain any difficult words immediately. Keep answers to 3-4 sentences.
+End by inviting a follow-up question. Never discuss anything inappropriate for young readers.`;
+    chats[i].push({role:'user', content:`Explain this news story simply: ${s.headline}. Details: ${s.blurb}`});
+    const reply = await callWorker(chats[i], system);
+    chats[i].push({role:'assistant', content:reply});
+    removeTyping(i);
+    addAI(i, reply);
+  }
+
+  async function send(i){
+    const inp = document.getElementById('inp-'+i);
+    const snd = document.getElementById('snd-'+i);
+    const txt = inp.value.trim();
+    if(!txt) return;
+    inp.value=''; inp.disabled=true; snd.disabled=true;
+    addUser(i, txt);
+    addTyping(i);
+    const s = currentFiltered[i];
+    chats[i].push({role:'user', content:txt});
+    const system = `You are Ask Dispatch, a friendly news explainer for curious young readers. The reader is asking about: "${s.headline}".
+Plain text only, no markdown. Simple words. 3-4 sentences max. Warm, clear, and always age-appropriate.`;
+    const reply = await callWorker(chats[i], system);
+    chats[i].push({role:'assistant', content:reply});
+    removeTyping(i);
+    addAI(i, reply);
+    inp.disabled=false; snd.disabled=false; inp.focus();
+  }
+
+  async function callWorker(messages, system){
+    if(!WORKER_URL || WORKER_URL==='YOUR_CLOUDFLARE_WORKER_URL_HERE'){
+      return "Ask Dispatch isn't connected yet — ask your teacher for help! In the meantime, reading the full story above is a great start. 📚";
+    }
+    try {
+      const res = await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages,system})});
+      const data = await res.json();
+      if(data.content && data.content[0]) return data.content[0].text;
+      return 'Something went wrong — please try again!';
+    } catch(e){ return 'Could not connect right now. Check your internet and try again! 🌐'; }
+  }
+
+  function addAI(i, text){
+    const box = document.getElementById('msgs-'+i);
+    const div = document.createElement('div');
+    div.className = 'msg-ai';
+    div.innerHTML = `<div class="msg-ai-icon">📰</div><div class="msg-ai-text">${text}</div>`;
+    box.appendChild(div); box.scrollTop=box.scrollHeight;
+  }
+  function addUser(i, text){
+    const box = document.getElementById('msgs-'+i);
+    const div = document.createElement('div');
+    div.className = 'msg-user';
+    div.innerHTML = `<div class="msg-user-text">${text}</div>`;
+    box.appendChild(div); box.scrollTop=box.scrollHeight;
+  }
+  function addTyping(i){
+    const box = document.getElementById('msgs-'+i);
+    const div = document.createElement('div');
+    div.className='msg-ai'; div.id='typ-'+i;
+    div.innerHTML='<div class="msg-ai-icon">📰</div><div class="msg-ai-text"><div class="typing-anim"><span></span><span></span><span></span></div></div>';
+    box.appendChild(div); box.scrollTop=box.scrollHeight;
+  }
+  function removeTyping(i){ const t=document.getElementById('typ-'+i); if(t) t.remove(); }
+
+  render();
+</script>
+</body>
+</html>
