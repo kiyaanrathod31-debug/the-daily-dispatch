@@ -149,10 +149,7 @@
   .headline { font-family: var(--font-display); font-size: clamp(17px, 3.8vw, 21px); font-weight: 900; line-height: 1.3; margin-bottom: 9px; color: var(--ink); letter-spacing: -0.2px; }
   .blurb { font-size: 14.5px; font-weight: 600; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; }
 
-  .card-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 20px 18px; }
-
-  .read-link { font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: color 0.15s; }
-  .read-link:hover { color: var(--ink); }
+  .card-actions { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 20px 18px; }
 
   .ask-btn {
     font-family: var(--font-display); font-size: 13px; font-weight: 800;
@@ -240,6 +237,7 @@
       </div>
       <nav class="header-nav">
         <a href="index.html" class="nav-link active">Feed</a>
+        <a href="askdispatch.html" class="nav-link">Ask Dispatch</a>
         <a href="about.html" class="nav-link">About</a>
       </nav>
     </div>
@@ -259,7 +257,7 @@
 <footer>
   <div class="footer-inner">
     <p>Every story links to its original source. We pick stories to help you understand India and the world. 📚</p>
-    <p style="margin-top:6px;">Always read the full article. Ask your teacher if something is confusing. Staying curious is a superpower! ⭐ <a href="about.html">About this site →</a></p>
+    <p style="margin-top:6px;">Click Ask Dispatch on any story to learn more. Ask your teacher if something is confusing. Staying curious is a superpower! ⭐ <a href="about.html">About this site →</a></p>
   </div>
 </footer>
 
@@ -323,7 +321,6 @@
           <div class="blurb">${s.blurb}</div>
         </div>
         <div class="card-actions">
-          <span class="read-link" onclick="window.open('${s.url}','_blank')">Read full story →</span>
           <button class="ask-btn" id="btn-${i}" onclick="toggleChat(${i})">
             <span class="ask-icon">📰</span> Ask Dispatch
           </button>
