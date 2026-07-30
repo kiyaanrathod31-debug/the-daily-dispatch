@@ -5,6 +5,26 @@
 
 const STORIES = [
 
+
+  // ── NATURE — ASSAM FLOODS ────────────────────────────────
+
+  {
+    headline: "Assam floods: 68 people have lost their lives and over 10 lakh families need help right now",
+    blurb: "Every year during the monsoon, a state in northeast India called Assam experiences very bad flooding. This year is one of the worst — 68 people have died and over ten lakh families have been affected. Hundreds of villages are underwater and roads are broken. The Indian Air Force has been flying helicopters to drop food, clean water and baby food to families who cannot be reached by road. The Army and disaster teams are working day and night to rescue people.",
+    source: "Outlook India",
+    url: "https://www.outlookindia.com/national/assam-flood-situation-improves-even-as-toll-rises-to-68-with-two-more-deaths-3",
+    category: "nature",
+    date: "2026-07-27"
+  },
+  {
+    headline: "Why does Assam flood every single year — and what happens to the animals in Kaziranga National Park?",
+    blurb: "Assam floods because of a giant river called the Brahmaputra. During monsoon, it gets so full of water that it overflows and floods the land around it. One of the most special effects is what happens to Kaziranga National Park — home to India's famous one-horned rhinos! When the park floods, rhinos, elephants and deer have to swim to higher ground and sometimes cross busy highways to stay safe. Locals and police help protect them on the roads. It is sad and amazing at the same time!",
+    source: "Coverfox News",
+    url: "https://www.coverfox.com/news/assam-floods-2026-death-toll-damage-latest-updates/",
+    category: "nature",
+    date: "2026-07-28"
+  },
+
   // ── SPORTS — WORLD CUP ───────────────────────────────────
 
   {
@@ -121,7 +141,14 @@ const STORIES = [
     date: "2026-07-10"
   },
 
-  // ── NATURE ────────────────────────────────────────────────
+  {
+    headline: "Terrible floods in Assam — the mighty Brahmaputra river overflowed and thousands of families needed help",
+    blurb: "One of India's biggest rivers, the Brahmaputra in Assam, flooded so badly this monsoon that it nearly tripled in width in some places — imagine a river growing to three times its normal size! The floods affected over 10 lakh people (that is one million people!) and rescue teams including the army, NDRF and local volunteers worked around the clock to help families stranded in villages surrounded by water. Relief camps with food and shelter were set up for over 37,000 people. The whole country came together to help.",
+    source: "Outlook India",
+    url: "https://www.outlookindia.com/national/assam-flood-situation-improves-even-as-toll-rises-to-68-with-two-more-deaths-3",
+    category: "nature",
+    date: "2026-07-30"
+  },
 
   {
     headline: "Mumbai gets so much rain it shuts down — but did you know the monsoon is actually a lifesaver?",
